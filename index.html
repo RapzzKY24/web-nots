@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- boostrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- boostrap end -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <title>Notes App | Organize Your Thoughts</title>
+</head>
+<body>
+    <header class="app-header py-4">
+        <div class="container d-flex justify-content-center">
+            <h1 class="app-title mb-0"><i class="fas fa-sticky-note me-2"></i>Notes App</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="note-form form-group d-flex flex-column gap-3 p-4">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="titleMessage" id="input-title" placeholder="Create your title message..." required>
+                <label for="input-title">Note Title</label>
+                <div class="invalid-feedback">
+                    Please provide a title for your note.
+                </div>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" name="message" id="input-message" rows="4" placeholder="Build a creative message..." style="height: 120px" required></textarea>
+                <label for="input-message">Note Content</label>
+                <div class="invalid-feedback">
+                    Please provide content for your note.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-submit btn-primary mt-2" id="submit-btn">
+                <i class="fas fa-plus me-2"></i>Add Note
+            </button>
+        </div>
+    </div>
+
+    <main class="mt-5">
+        <section class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title mb-0"><i class="fas fa-list me-2"></i>My Notes</h2>
+                <div id="loading-indicator" class="spinner-border text-primary" role="status" style="display: none;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="row" id="notes-list">
+
+            </div>
+        </section>
+
+        <section class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title mb-0"><i class="fas fa-archive me-2"></i>Archived Notes</h2>
+                <div id="loading-indicator-archived" class="spinner-border text-primary" role="status" style="display: none;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="row" id="notes-list-archived">
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-5 py-4 text-center text-muted">
+        <div class="container">
+            <p class="mb-0">&copy; hello world. </p>
+        </div>
+    </footer>
+
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="toast-notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i id="toast-icon" class="fas fa-info-circle me-2"></i>
+                <strong class="me-auto" id="toast-title">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toast-message">
+                Message goes here
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <!-- Component Scripts -->
+    <script src="components/ui/toast.js"></script>
+    <script src="components/ui/notesList.js"></script>
+    <script src="components/api/notesApi.js"></script>
+    <script src="components/ui/noteForm.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
