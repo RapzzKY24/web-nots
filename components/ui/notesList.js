@@ -1,4 +1,3 @@
-// Display notes in the appropriate container
 const displayData = (notes, isArchived) => {
     const containerNotesList = document.getElementById(isArchived ? 'notes-list-archived' : 'notes-list');
     containerNotesList.innerHTML = '';
@@ -36,7 +35,7 @@ const displayData = (notes, isArchived) => {
         containerNotesList.appendChild(childNotesList);
     });
 
-    // Add event listeners for delete buttons
+    
     const buttonDelete = document.querySelectorAll('.btn-delete');
     buttonDelete.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -45,7 +44,7 @@ const displayData = (notes, isArchived) => {
         });
     });
 
-    // Add event listeners for archive buttons
+   
     const archiveButtons = containerNotesList.querySelectorAll('.btn-archive');
     archiveButtons.forEach((button) => {
         button.addEventListener('click', (e) => {
@@ -54,7 +53,7 @@ const displayData = (notes, isArchived) => {
         });
     });
     
-    // Add event listeners for unarchive buttons
+    
     const unarchiveButtons = containerNotesList.querySelectorAll('.btn-unarchive');
     unarchiveButtons.forEach((button) => {
         button.addEventListener('click', (e) => {

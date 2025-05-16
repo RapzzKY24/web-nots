@@ -1,8 +1,8 @@
 const baseUrl = 'https://notes-api.dicoding.dev/v2';
 
-// Get all active notes
+
 const getActiveNotes = async () => {
-    // Show loading indicator
+   
     const loadingIndicator = document.getElementById('loading-indicator');
     loadingIndicator.style.display = 'block';
     
@@ -16,7 +16,7 @@ const getActiveNotes = async () => {
         }
 
         if (Array.isArray(resJson.data)) {
-            displayData(resJson.data, false) // false means not archived
+            displayData(resJson.data, false) 
         } else {
             sendResponMessage('Data is not in the expected format', 'warning')
         }
@@ -28,9 +28,9 @@ const getActiveNotes = async () => {
     }
 }
 
-// Get all archived notes
+
 const getArchiveNotes = async () => {
-    // Use the same loading indicator for simplicity
+    
     const loadingIndicator = document.getElementById('loading-indicator');
     loadingIndicator.style.display = 'block';
     
@@ -44,7 +44,7 @@ const getArchiveNotes = async () => {
         } 
         
         if (Array.isArray(resJson.data)) {
-            displayData(resJson.data, true) // true means archived
+            displayData(resJson.data, true) 
         } else {
             sendResponMessage('Data is not in the expected format', 'warning')
         }
@@ -55,9 +55,9 @@ const getArchiveNotes = async () => {
     }
 }
 
-// Add a new note
+
 const inputMessage = async (notes) => {
-    // Get submit button and set loading state
+  
     const submitBtn = document.getElementById('submit-btn');
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Saving...';
@@ -84,13 +84,13 @@ const inputMessage = async (notes) => {
     } catch (err) {
         sendResponMessage(err.message, 'error')
     } finally {
-        // Reset button state
+      
         submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
     }
 }
 
-// Delete a note
+
 const deleteMessage = async (noteID, buttonElement) => {
     const originalBtnText = buttonElement.innerHTML;
     buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
@@ -110,7 +110,7 @@ const deleteMessage = async (noteID, buttonElement) => {
             sendResponMessage(responseJson.message || 'Note deleted successfully', 'success')
         } else {
             sendResponMessage(responseJson.message || 'Failed to delete note', 'error')
-            // Reset button if deletion failed
+            
             buttonElement.innerHTML = originalBtnText;
             buttonElement.disabled = false;
         }
@@ -118,7 +118,7 @@ const deleteMessage = async (noteID, buttonElement) => {
         getActiveNotes()
     } catch (err) {
         sendResponMessage(err.message, 'error')
-        // Reset button on error
+      
         buttonElement.innerHTML = originalBtnText;
         buttonElement.disabled = false;
     }
@@ -146,7 +146,6 @@ const archiveMessage = async (noteID, buttonElement) => {
             sendResponMessage(resJson.message || 'Failed to archive note', 'error');
         }
 
-        // Refresh both active and archived notes
         getActiveNotes();
         getArchiveNotes();
     } catch (err) {
@@ -157,7 +156,7 @@ const archiveMessage = async (noteID, buttonElement) => {
     }
 }
 
-// Unarchive a note
+
 const unarchiveMessage = async (noteID, buttonElement) => {
     const originalBtnText = buttonElement.innerHTML;
     buttonElement.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
@@ -179,7 +178,6 @@ const unarchiveMessage = async (noteID, buttonElement) => {
             sendResponMessage(resJson.message || 'Failed to unarchive note', 'error');
         }
 
-        // Refresh both active and archived notes
         getActiveNotes();
         getArchiveNotes();
     } catch (err) {
